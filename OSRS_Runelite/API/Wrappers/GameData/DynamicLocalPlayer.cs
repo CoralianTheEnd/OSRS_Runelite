@@ -12,7 +12,6 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
                 return Web.RequestData.RequestClientData<int>("/LocalPlayer/CombatLevel");
             }
         }
@@ -21,7 +20,7 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
+                
                 return Web.RequestData.RequestClientData<string>("/LocalPlayer/CombatLevel");
             }
         }
