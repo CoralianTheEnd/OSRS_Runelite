@@ -39,7 +39,7 @@ namespace OSRS_Runelite.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PaintPublisher.RaiseEvent_OnPaint(Client.GetCanvasImage());
+            // PaintPublisher.RaiseEvent_OnPaint(Client.GetCanvasImage());
         }
     }
 }

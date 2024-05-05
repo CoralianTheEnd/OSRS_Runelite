@@ -11,44 +11,40 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         public int CombatLevel
         {
             get
-            {
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/CombatLevel");
+            {            
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/CombatLevel");
             }
         }
 
         public string OverheadIcon
         {
             get
-            {
-                
-                return Web.RequestData.RequestClientData<string>("/LocalPlayer/CombatLevel");
+            {             
+                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/CombatLevel");
             }
         }
 
         public string SkullIcon
         {
             get
-            {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<string>("/LocalPlayer/SkullIcon");
+            {             
+                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/SkullIcon");
             }
         }
 
         public bool IsInteracting
         {
             get
-            {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<bool>("/LocalPlayer/SkullIcon");
+            {               
+                return Web.RequestData.ConvertStandardClientData<bool>("/LocalPlayer/SkullIcon");
             }
         }
 
         public string IsInteractingName
         {
             get
-            {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<string>("/LocalPlayer/IsInteractingName");
+            {           
+                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/IsInteractingName");
             }
         }
 
@@ -56,8 +52,7 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<string>("/LocalPlayer/OverheadText");
+                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/OverheadText");
             }
         }
 
@@ -65,8 +60,7 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<bool>("/LocalPlayer/OverheadText");
+                return Web.RequestData.ConvertStandardClientData<bool>("/LocalPlayer/OverheadText");
             }
         }
 
@@ -74,8 +68,7 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/AnimationId");
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/AnimationId");
             }
         }
 
@@ -83,8 +76,7 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/PoseAnimationId");
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PoseAnimationId");
             }
         }
 
@@ -92,17 +84,15 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/RunEnergy");
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/RunEnergy");
             }
         }
 
         public int HealthCurrent
         {
             get
-            {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/HealthCurrent");
+            { 
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/HealthCurrent");
             }
         }
 
@@ -110,8 +100,7 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/HealthMax");
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/HealthMax");
             }
         }
 
@@ -119,17 +108,15 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         {
             get
             {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/PrayerCurrent");
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PrayerCurrent");
             }
         }
 
         public int PrayerMax
         {
             get
-            {
-                // # http://localhost:8080/LocalPlayer/CombatLevel
-                return Web.RequestData.RequestClientData<int>("/LocalPlayer/PrayerMax");
+            { 
+                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PrayerMax");
             }
         }
     }

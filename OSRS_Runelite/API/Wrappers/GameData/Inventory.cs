@@ -23,26 +23,30 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 
         private async void LoadData()
         {
-            var rawJson = Web.RequestData.RequestClientData("/Inventory/OldDataStructure");
 
-            //var s = 
-            //    Web.RequestData.RequestClientData(Web.DataTypes.RSData.TEST);
+            _ITEMS =
+                Web.RequestData.ConvertJsonClientData<Dictionary<string, Item>>("/Inventory/OldDataStructure").Values.ToList();
 
-            if (rawJson == null)
-            {
-                Logger.Error("Failed to retrieve item data from local server.");
-                return;
-            }
+            //var rawJson = Web.RequestData.RequestClientData("/Inventory/OldDataStructure");
 
-            var itemDictionary = JsonSerializer.Deserialize<Dictionary<string, Item>>(rawJson);
+            ////var s = 
+            ////    Web.RequestData.RequestClientData(Web.DataTypes.RSData.TEST);
 
-            if (itemDictionary == null)
-            {
-                Logger.Error("Failed to convert item data retreived string.");
-                return;
-            }
+            //if (rawJson == null)
+            //{
+            //    Logger.Error("Failed to retrieve item data from local server.");
+            //    return;
+            //}
 
-            _ITEMS = itemDictionary.Values.ToList();
+            //var itemDictionary = JsonSerializer.Deserialize<Dictionary<string, Item>>(rawJson);
+
+            //if (itemDictionary == null)
+            //{
+            //    Logger.Error("Failed to convert item data retreived string.");
+            //    return;
+            //}
+
+            //_ITEMS = itemDictionary.Values.ToList();
 
         }
 

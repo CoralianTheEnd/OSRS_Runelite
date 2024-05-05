@@ -25,24 +25,24 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 
         private void LoadData()
         {
-            var rawJson = 
-                Web.RequestData.RequestClientData(Web.DataTypes.RSData.CAMERA);
+            //var rawJson = 
+            //    Web.RequestData.RequestClientData(Web.DataTypes.RSData.CAMERA);
 
-            if (rawJson == null)
-            {
-                Logger.Error("Failed to get player data from the server. Shutdown.");
-                return;
-            }
+            //if (rawJson == null)
+            //{
+            //    Logger.Error("Failed to get player data from the server. Shutdown.");
+            //    return;
+            //}
 
-            // Deserialize into a dictionary
-            var gameObjectsDict = JsonSerializer.Deserialize<Camera>(rawJson);
-            if (gameObjectsDict == null)
-            {
-                Logger.Error("Failed to parse retreived player data.");
-                return;
-            }
+            //// Deserialize into a dictionary
+            //var gameObjectsDict = JsonSerializer.Deserialize<Camera>(rawJson);
+            //if (gameObjectsDict == null)
+            //{
+            //    Logger.Error("Failed to parse retreived player data.");
+            //    return;
+            //}
 
-            _CAMERA = gameObjectsDict;
+            //_CAMERA = gameObjectsDict;
         }
     }
 }

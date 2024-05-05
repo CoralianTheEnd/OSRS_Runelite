@@ -71,19 +71,21 @@ namespace OSRS_Runelite.API.Wrappers.GameData
         private void LoadData()
         {
 
-            string rawJson = Web.RequestData.RequestClientData("/GameObjects");
-            //string rawJson = Web.RequestData.RequestClientData(Web.DataTypes.RSData.TEST_OBJECT2);
+            _gameObjects = 
+                Web.RequestData.ConvertJsonClientData<Dictionary<string, GameObject>>("/GameObjects").Values.ToArray();
+           
+            ////string rawJson = Web.RequestData.RequestClientData(Web.DataTypes.RSData.TEST_OBJECT2);
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            //var options = new JsonSerializerOptions
+            //{
+            //    PropertyNameCaseInsensitive = true
+            //};
 
-            // Deserialize into a dictionary
-            var gameObjectsDict = 
-                JsonSerializer.Deserialize<Dictionary<string, GameObject>>(rawJson, options);
+            //// Deserialize into a dictionary
+            //var gameObjectsDict = 
+            //    JsonSerializer.Deserialize<Dictionary<string, GameObject>>(rawJson, options);
 
-            _gameObjects = gameObjectsDict.Values.ToArray();
+            //_gameObjects = gameObjectsDict.Values.ToArray();
         }
     }
 }

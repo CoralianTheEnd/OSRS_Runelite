@@ -94,48 +94,7 @@ namespace OSRS_Runelite.UI
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
         {
-            var rawJson =
-                API.Web.RequestData.RequestClientData(API.Web.DataTypes.RSData.PLAYER);
-
-            Console.WriteLine(rawJson);
-
-            if (rawJson == null)
-            {
-                Logger.Error("Failed to get player data from the server. Shutdown.");
-                return;
-            }
-
-            // Deserialize into a dictionary
-            var gameObjectsDict = JsonSerializer.Deserialize<Character>(rawJson);
-            if (gameObjectsDict == null)
-            {
-                Logger.Error("Failed to parse retreived player data.");
-                return;
-            }
-
-            Console.WriteLine(gameObjectsDict.CombatLevel);
-            Console.WriteLine(gameObjectsDict.OverHeadIcon);
-            Console.WriteLine(gameObjectsDict.SkullIcon);
-            Console.WriteLine(gameObjectsDict.InteractingName);
-            Console.WriteLine(gameObjectsDict.OverheadText);
-            Console.WriteLine(gameObjectsDict.IsDead);
-            Console.WriteLine(gameObjectsDict.AnimationID);
-            Console.WriteLine(gameObjectsDict.PoseAnimationID);
-            Console.WriteLine(gameObjectsDict.RunEnergy);
-            Console.WriteLine(gameObjectsDict.HealthCurrent);
-            Console.WriteLine(gameObjectsDict.HealthMax);
-            Console.WriteLine(gameObjectsDict.PrayerCurrent);
-            Console.WriteLine(gameObjectsDict.PrayerMax);
-
-            Console.WriteLine(gameObjectsDict.WorldPoint.X);
-            Console.WriteLine(gameObjectsDict.WorldPoint.Y);
-            Console.WriteLine(gameObjectsDict.WorldPoint.Plane);
-            Console.WriteLine(gameObjectsDict.WorldPoint.RegionID);
-            Console.WriteLine(gameObjectsDict.WorldPoint.RegionX);
-            Console.WriteLine(gameObjectsDict.WorldPoint.RegionY);
-
-
-
+            
         }
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
