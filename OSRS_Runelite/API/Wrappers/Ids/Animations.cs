@@ -10,5 +10,6 @@ namespace OSRS_Runelite.API.Wrappers.Ids
     {
         internal static readonly int IDLE = -1;
         internal static readonly int WOODCUTTING = 867;
+        internal static readonly int MINING = 624;
     }
 }

@@ -35,27 +35,49 @@ namespace OSRS_Runelite.API.Wrappers.GameData
             return GameObjects?.FirstOrDefault(g => ids.Contains(g.Id) && g.IsOnScreen());
         }
 
-        //public GameObject? FindClosestGameObjectById(int id)
-        //{
-        //    if (GameObjects == null || GameObjects.Length == 0)
-        //    {
-        //        Logger.Error("The GameObject list must not be empty.");
-        //        return null;
-        //    }
+        public GameObject? FindClosestGameObjectById(int id)
+        {
+            if (GameObjects == null || GameObjects.Length == 0)
+            {
+                Logger.Error("The GameObject list must not be empty.");
+                return null;
+            }
 
-        //    CharacterContainer player = new CharacterContainer();
+            DynamicLocalPlayer player = new DynamicLocalPlayer();
 
-        //    if (player == null)
-        //    {
-        //        Logger.Error("The player must not be empty.");
-        //        return null;
-        //    }
+            if (player == null)
+            {
+                Logger.Error("The player must not be empty.");
+                return null;
+            }
 
-        //    return GameObjects
-        //        .Where(go => go.Id == id && go.IsOnScreen()) // Filter by ID and valid WorldPoint
-        //        .OrderBy(go => CalculateDistance(go.WorldPoint, player.LocalPlayer.WorldPoint))
-        //        .FirstOrDefault(); // Return the closest matching GameObject
-        //}
+            return GameObjects
+                .Where(go => go.Id == id && go.IsOnScreen()) // Filter by ID and valid WorldPoint
+                .OrderBy(go => CalculateDistance(go.WorldPoint, player.WorldPoint))
+                .FirstOrDefault(); // Return the closest matching GameObject
+        }
+
+        public GameObject? FindClosestGameObjectByIds(params int[] ids)
+        {
+            if (GameObjects == null || GameObjects.Length == 0)
+            {
+                Logger.Error("The GameObject list must not be empty.");
+                return null;
+            }
+
+            DynamicLocalPlayer player = new DynamicLocalPlayer();
+
+            if (player == null)
+            {
+                Logger.Error("The player must not be empty.");
+                return null;
+            }
+
+            return GameObjects
+                .Where(go => ids.Contains(go.Id) && go.IsOnScreen()) // Filter by IDs array and valid WorldPoint
+                .OrderBy(go => CalculateDistance(go.WorldPoint, player.WorldPoint))
+                .FirstOrDefault(); // Return the closest matching GameObject
+        }
 
         // Function to calculate the Euclidean distance between two WorldPoints
         private static double CalculateDistance(WorldPoint a, WorldPoint b)

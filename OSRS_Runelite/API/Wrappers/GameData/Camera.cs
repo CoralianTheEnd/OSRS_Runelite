@@ -7,34 +7,42 @@ using System.Threading.Tasks;
 
 namespace OSRS_Runelite.API.Wrappers.GameData
 {
-    internal class Camera
+    internal class DynamicCamera
     {
-        [JsonPropertyName("yaw")]
-        public int Yaw { get; set; }
+        public int Yaw => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/Yaw");
 
-        [JsonPropertyName("pitch")]
-        public int Pitch { get; set; }
 
-        [JsonPropertyName("zoom")]
-        public int Zoom { get; set; }
+        public int Pitch => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/Pitch");
 
-        [JsonPropertyName("x")]
-        public int X { get; set; }
 
-        [JsonPropertyName("y")]
-        public int Y { get; set; }
+        public int Zoom => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/Zoom");
 
-        [JsonPropertyName("z")]
-        public int Z { get; set; }
 
-        [JsonPropertyName("x2")]
-        public int X2 { get; set; }
+        public int X => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/X");
 
-        [JsonPropertyName("y2")]
-        public int Y2 { get; set; }
 
-        [JsonPropertyName("z2")]
-        public int Z2 { get; set; }
+        public int Y =>
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/Y");
+
+
+        public int Z => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/Z");
+
+
+        public int X2 => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/X2");
+
+
+        public int Y2 => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/Y2");
+
+
+        public int Z2 => 
+            Web.RequestData.ConvertStandardClientData<int>("/Camera/Z2");
 
     }
 }

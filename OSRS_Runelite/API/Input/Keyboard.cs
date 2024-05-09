@@ -148,14 +148,13 @@ namespace OSRS_Runelite.API.Input
         // Down = pitch down
         internal static bool keyboardRotateToYaw(int yaw)
         {
-            CameraContainer cameraContainer = new CameraContainer();
 
+            DynamicCamera camera = new DynamicCamera();
 
-
-            while (!IsWithinRange(yaw, cameraContainer.Camera.Yaw, 50))
+            while (!IsWithinRange(yaw, camera.Yaw, 50))
             {
 
-                Console.WriteLine($"Random till we hit: {IsWithinRange(yaw, cameraContainer.Camera.Yaw, 50)}");
+                Console.WriteLine($"Random till we hit: {IsWithinRange(yaw, camera.Yaw, 50)}");
                 if (!KeyDown(Keys.Right))
                 {
                     Console.Write("Failed to press key down");

@@ -53,7 +53,6 @@
             // 
             // toolStripLabel_FindWindow
             // 
-            toolStripLabel_FindWindow.Image = Properties.Resources.Target_icon;
             toolStripLabel_FindWindow.Name = "toolStripLabel_FindWindow";
             toolStripLabel_FindWindow.RightToLeft = RightToLeft.Yes;
             toolStripLabel_FindWindow.Size = new Size(93, 22);

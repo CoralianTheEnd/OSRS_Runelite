@@ -1,6 +1,7 @@
 ﻿using OSRS_Runelite.API.Helper;
 using OSRS_Runelite.API.Wrappers.Ids;
 using OSRS_Runelite.API.Wrappers.Interactive;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -26,33 +27,18 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 
             _ITEMS =
                 Web.RequestData.ConvertJsonClientData<Dictionary<string, Item>>("/Inventory/OldDataStructure").Values.ToList();
-
-            //var rawJson = Web.RequestData.RequestClientData("/Inventory/OldDataStructure");
-
-            ////var s = 
-            ////    Web.RequestData.RequestClientData(Web.DataTypes.RSData.TEST);
-
-            //if (rawJson == null)
-            //{
-            //    Logger.Error("Failed to retrieve item data from local server.");
-            //    return;
-            //}
-
-            //var itemDictionary = JsonSerializer.Deserialize<Dictionary<string, Item>>(rawJson);
-
-            //if (itemDictionary == null)
-            //{
-            //    Logger.Error("Failed to convert item data retreived string.");
-            //    return;
-            //}
-
-            //_ITEMS = itemDictionary.Values.ToList();
-
         }
 
-        public List<Item?> FindItemsById(int id)
+        public List<Item?> FindItemById(int id)
         {
             var matchingItems = Items.Where(item => item.Id == id).ToList();
+            return matchingItems;
+        }
+
+        public List<Item?> FindItemsById(params int[] ids)
+        {
+            // Use Contains to check if the item.Id is in the ids array
+            var matchingItems = Items.Where(item => ids.Contains(item.Id)).ToList();
             return matchingItems;
         }
 
@@ -69,9 +55,9 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 
     public class Item
     {
-        public double Id { get; set; }
+        public int Id { get; set; }
 
-        public double Quantity { get; set; }
+        public int Quantity { get; set; }
 
         public Bounds Bounds { get; set; }
    

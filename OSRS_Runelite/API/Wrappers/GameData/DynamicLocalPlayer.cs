@@ -8,116 +8,49 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 {
     public class DynamicLocalPlayer
     {
-        public int CombatLevel
-        {
-            get
-            {            
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/CombatLevel");
-            }
-        }
+        public int CombatLevel =>
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/CombatLevel");
 
-        public string OverheadIcon
-        {
-            get
-            {             
-                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/CombatLevel");
-            }
-        }
+        public string OverheadIcon => 
+            Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/CombatLevel");
 
-        public string SkullIcon
-        {
-            get
-            {             
-                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/SkullIcon");
-            }
-        }
+        public string SkullIcon => 
+            Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/SkullIcon");
 
-        public bool IsInteracting
-        {
-            get
-            {               
-                return Web.RequestData.ConvertStandardClientData<bool>("/LocalPlayer/SkullIcon");
-            }
-        }
+        public bool IsInteracting => 
+            Web.RequestData.ConvertStandardClientData<bool>("/LocalPlayer/SkullIcon");
 
-        public string IsInteractingName
-        {
-            get
-            {           
-                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/IsInteractingName");
-            }
-        }
+        public string IsInteractingName => 
+            Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/IsInteractingName");
 
-        public string OverheadText
-        {
-            get
-            {
-                return Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/OverheadText");
-            }
-        }
+        public string OverheadText => 
+            Web.RequestData.ConvertStandardClientData<string>("/LocalPlayer/OverheadText");
 
-        public bool IsDead
-        {
-            get
-            {
-                return Web.RequestData.ConvertStandardClientData<bool>("/LocalPlayer/OverheadText");
-            }
-        }
+        public bool IsDead => 
+            Web.RequestData.ConvertStandardClientData<bool>("/LocalPlayer/OverheadText");
 
-        public int AnimationId
-        {
-            get
-            {
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/AnimationId");
-            }
-        }
+        public int AnimationId => 
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/AnimationId");
 
-        public int PoseAnimationId
-        {
-            get
-            {
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PoseAnimationId");
-            }
-        }
+        public int PoseAnimationId =>
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PoseAnimationId");
 
-        public int RunEnergy
-        {
-            get
-            {
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/RunEnergy");
-            }
-        }
+        public int RunEnergy => 
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/RunEnergy");
 
-        public int HealthCurrent
-        {
-            get
-            { 
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/HealthCurrent");
-            }
-        }
+        public int HealthCurrent => 
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/HealthCurrent");
 
-        public int HealthMax
-        {
-            get
-            {
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/HealthMax");
-            }
-        }
+        public int HealthMax =>
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/HealthMax");
 
-        public int PrayerCurrent
-        {
-            get
-            {
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PrayerCurrent");
-            }
-        }
+        public int PrayerCurrent => 
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PrayerCurrent");
 
-        public int PrayerMax
-        {
-            get
-            { 
-                return Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PrayerMax");
-            }
-        }
+        public int PrayerMax => 
+            Web.RequestData.ConvertStandardClientData<int>("/LocalPlayer/PrayerMax");
+
+        public WorldPoint WorldPoint =>
+            Web.RequestData.ConvertJsonClientData<WorldPoint>("/LocalPlayer/WorldPoint");// /LocalPlayer/WorldPoint
     }
 }

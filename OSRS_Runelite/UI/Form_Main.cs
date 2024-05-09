@@ -88,7 +88,10 @@ namespace OSRS_Runelite.UI
 
         private void startScriptLabel_Click(object sender, EventArgs e)
         {
-            scriptTarget = new Woodcutting();
+            //scriptTarget = new Woodcutting();
+            //scriptTarget.Start();
+
+            scriptTarget = new Mining();
             scriptTarget.Start();
         }
 
