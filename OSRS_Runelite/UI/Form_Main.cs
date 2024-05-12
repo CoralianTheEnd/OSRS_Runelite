@@ -7,11 +7,14 @@ using OSRS_Runelite.API.Wrappers.Ids;
 using OSRS_Runelite.API.Helper;
 using System.Text.Json.Nodes;
 using System.Text.Json;
+using System.Text;
 
 namespace OSRS_Runelite.UI
 {
     public partial class Form_Main : Form
     {
+        private AbstractScript scriptTarget;
+
         public Form_Main()
         {
             InitializeComponent();
@@ -54,30 +57,6 @@ namespace OSRS_Runelite.UI
 
         }
 
-        private void toolStripLabel3_Click(object sender, EventArgs e)
-        {
-            //CameraContainer cameraContainer = new CameraContainer();
-
-            //Console.WriteLine(cameraContainer.Camera.Yaw);
-            //Console.WriteLine(cameraContainer.Camera.Pitch);
-            //Console.WriteLine(cameraContainer.Camera.Zoom);
-            //Console.WriteLine(cameraContainer.Camera.X);
-            //Console.WriteLine(cameraContainer.Camera.Y);
-            //Console.WriteLine(cameraContainer.Camera.Z);
-            //Console.WriteLine(cameraContainer.Camera.X2);
-            //Console.WriteLine(cameraContainer.Camera.Y2);
-            //Console.WriteLine(cameraContainer.Camera.Z2);
-
-            API.Input.Keyboard.keyboardRotateToYaw(2000);
-        }
-
-        private void Form_Main_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        AbstractScript scriptTarget;
-
         private void stopScriptLabel_Click(object sender, EventArgs e)
         {
             if (scriptTarget != null)
@@ -95,39 +74,51 @@ namespace OSRS_Runelite.UI
             scriptTarget.Start();
         }
 
-        private void toolStripLabel2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
-            // TestScript ts = new TestScript();
-            // ts.Start();
 
-            // Console.Write(DynamicLocalPlayer.CombatLevel);
         }
 
-        public class TestScript : AbstractScript
+        private void toolStripLabel2_Click(object sender, EventArgs e)
         {
-            public override void OnRun()
+            API.Input.Keyboard.keyboardRotateToYaw(2000);
+        }
+
+        private async void toolStripLabel3_Click(object sender, EventArgs e)
+        {
+            string url = "http://127.0.0.1:8080/Post";
+            var postData = new Dictionary<string, string>
             {
-                base.OnRun();
+                { "Type", "Object" },
+                { "Ids", "value2" }
+            };
 
-                while (true)
-                {
-                    var inv =
-    InventoryContainer.FindItemsById(Items.WILLOW_LOG);
+            string test = await SendPostDataAsync(url, postData);
 
-                    Console.WriteLine(inv.Count);
+            Console.WriteLine(test);
+        }
 
-                    inv[0].RightClick();
+        HttpClient client = new HttpClient();
 
-                    Thread.Sleep(1000);
-                }
+        async Task<string> SendPostDataAsync(string url, Dictionary<string, string> data)
+        {
+            // Serialize the dictionary to JSON
+            string jsonData = JsonSerializer.Serialize(data);
 
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(url, content);
 
-
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Request successful.");
+                string responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseContent);
+                return responseContent; // Return the response content
+            }
+            else
+            {
+                Console.WriteLine($"Failed to send request: {response.StatusCode}");
+                return $"Error: {response.StatusCode}";
             }
         }
     }

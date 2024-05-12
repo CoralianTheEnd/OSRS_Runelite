@@ -10,24 +10,10 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 {
     public class InventoryContainer
     {
-        [JsonIgnore]
-        private List<Item>? _ITEMS;
         
-        public List<Item>? Items
-        {
-            get
-            {
-                LoadData();
-                return _ITEMS;
-            }
-        }
+        public List<Item>? Items => 
+            Web.RequestData.ConvertJsonClientData<Dictionary<string, Item>>("/Inventory/OldDataStructure").Values.ToList();
 
-        private async void LoadData()
-        {
-
-            _ITEMS =
-                Web.RequestData.ConvertJsonClientData<Dictionary<string, Item>>("/Inventory/OldDataStructure").Values.ToList();
-        }
 
         public List<Item?> FindItemById(int id)
         {

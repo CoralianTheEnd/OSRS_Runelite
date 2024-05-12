@@ -29,6 +29,8 @@ namespace OSRS_Runelite.API.Script
 
         public STATE GetState()
         {
+            Thread.Sleep(10);
+
             if (this.PlayerContainer.PoseAnimationId != PoseAnimations.IDLE)
             {
                 Logger.Info("STATE: Walking");
@@ -65,15 +67,13 @@ namespace OSRS_Runelite.API.Script
                     case STATE.WALKING:
                         while (this.PlayerContainer.PoseAnimationId != PoseAnimations.IDLE)
                         {
-                            Thread.Sleep(2000);
+                            Thread.Sleep(100);
                         }
-
-                        Thread.Sleep(2000);
                         break;
                     case STATE.MINING:
                         while (PlayerContainer.AnimationId == Animations.MINING)
                         {
-                            Thread.Sleep(1000);
+                            Thread.Sleep(100);
                         }
                         break;
                     case STATE.DROP:
@@ -102,8 +102,6 @@ namespace OSRS_Runelite.API.Script
                             Logger.Error("failed to click rock.");
                             break;
                         }
-
-                        Thread.Sleep(3000);
                         break;
                     case STATE.UNKNOW:
                         break;

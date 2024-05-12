@@ -37,14 +37,14 @@
             startScriptLabel = new ToolStripLabel();
             toolStripLabel2 = new ToolStripLabel();
             toolStripLabel3 = new ToolStripLabel();
-            statusStrip1 = new StatusStrip();
             toolStripLabel1 = new ToolStripLabel();
+            statusStrip1 = new StatusStrip();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel_FindWindow, toolStripTextBox1, toolStripTextBox2, toolStripComboBox1, stopScriptLabel, startScriptLabel, toolStripLabel2, toolStripLabel3, toolStripLabel1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel_FindWindow, toolStripTextBox1, toolStripTextBox2, toolStripComboBox1, stopScriptLabel, startScriptLabel, toolStripLabel1, toolStripLabel2, toolStripLabel3 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(853, 25);
@@ -55,7 +55,7 @@
             // 
             toolStripLabel_FindWindow.Name = "toolStripLabel_FindWindow";
             toolStripLabel_FindWindow.RightToLeft = RightToLeft.Yes;
-            toolStripLabel_FindWindow.Size = new Size(93, 22);
+            toolStripLabel_FindWindow.Size = new Size(77, 22);
             toolStripLabel_FindWindow.Text = "Find Window";
             toolStripLabel_FindWindow.Click += toolStripLabel_FindWindow_Click;
             // 
@@ -106,6 +106,13 @@
             toolStripLabel3.Text = "toolStripLabel3";
             toolStripLabel3.Click += toolStripLabel3_Click;
             // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(86, 22);
+            toolStripLabel1.Text = "toolStripLabel1";
+            toolStripLabel1.Click += toolStripLabel1_Click;
+            // 
             // statusStrip1
             // 
             statusStrip1.Location = new Point(0, 311);
@@ -113,13 +120,6 @@
             statusStrip1.Size = new Size(853, 22);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(86, 15);
-            toolStripLabel1.Text = "toolStripLabel1";
-            toolStripLabel1.Click += toolStripLabel1_Click;
             // 
             // Form_Main
             // 
@@ -130,7 +130,6 @@
             Controls.Add(toolStrip1);
             Name = "Form_Main";
             Text = "Main";
-            Load += Form_Main_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ResumeLayout(false);

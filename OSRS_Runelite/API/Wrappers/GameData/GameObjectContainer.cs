@@ -12,15 +12,8 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 {
     public class GameObjectContainer
     {
-        private GameObject[] _gameObjects;
-        public GameObject[] GameObjects
-        {
-            get
-            {
-                LoadData();
-                return _gameObjects;
-            }
-        }
+        public GameObject[] GameObjects => 
+            Web.RequestData.ConvertJsonClientData<Dictionary<string, GameObject>>("/GameObjects").Values.ToArray();
 
         [JsonIgnore]
         public int TotalGameObjects => GameObjects?.Length ?? 0;
@@ -88,26 +81,6 @@ namespace OSRS_Runelite.API.Wrappers.GameData
             //Console.WriteLine($"DISTANCE FROM PLAYER: {i}");
 
             return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2)); ;
-        }
-
-        private void LoadData()
-        {
-
-            _gameObjects = 
-                Web.RequestData.ConvertJsonClientData<Dictionary<string, GameObject>>("/GameObjects").Values.ToArray();
-           
-            ////string rawJson = Web.RequestData.RequestClientData(Web.DataTypes.RSData.TEST_OBJECT2);
-
-            //var options = new JsonSerializerOptions
-            //{
-            //    PropertyNameCaseInsensitive = true
-            //};
-
-            //// Deserialize into a dictionary
-            //var gameObjectsDict = 
-            //    JsonSerializer.Deserialize<Dictionary<string, GameObject>>(rawJson, options);
-
-            //_gameObjects = gameObjectsDict.Values.ToArray();
         }
     }
 }
