@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OSRS_Runelite.API.Wrappers.Ids
 {
-    internal class NPCs
+    internal class NpcNames
     {
+        internal static readonly string ROD_FISHING_SPOT_0 = "Rod Fishing spot";
+
         internal static readonly string BEE_KEEPER = "Bee keeper";
         internal static readonly string CAPT_ARNAV = "Capt' Arnav";
         internal static readonly string NILES = "Niles";

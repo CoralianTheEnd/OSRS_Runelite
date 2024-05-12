@@ -8,6 +8,8 @@ namespace OSRS_Runelite.API.Wrappers.Ids
 {
     internal class Items
     {
+        internal readonly static int RAW_SALMON = 331;
+        internal readonly static int RAW_TROUT = 335;
         internal readonly static int WILLOW_LOG = 1519;
         internal readonly static int IRON_ORE = 440;
         internal readonly static int UNCUT_SAPPHIRE = 1623;

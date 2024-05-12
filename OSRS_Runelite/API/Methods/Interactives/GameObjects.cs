@@ -11,16 +11,15 @@ namespace OSRS_Runelite.API.Methods.Interactives
     {
         public static List<GameObject> GetAll()
         {
-            return default;
-            // return Web.RequestData.ConvertJsonClientData<Dictionary<string, GameObject>>("/GameObjects");
+            return Web.RequestData.ConvertJsonClientData<Dictionary<string, GameObject>>("/GameObjects").Values.ToList();
         }
 
-        public static List<GameObject> GetAll(int Id) 
+        public static List<GameObject> GetAll(params int[] Id) 
         {
             return default;
         }
 
-        public static List<GameObject> GetAll(string name)
+        public static List<GameObject> GetAll(params string[] name)
         {
             return default;
         }

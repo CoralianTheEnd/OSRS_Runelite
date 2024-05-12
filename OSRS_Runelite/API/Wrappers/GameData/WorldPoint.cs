@@ -26,5 +26,10 @@ namespace OSRS_Runelite.API.Wrappers.GameData
 
         [JsonPropertyName("regionY")]
         public double RegionY { get; set; }
+
+        public override string ToString()
+        {
+            return $"X: {this.X} Y: {this.Y} Plane: {this.Plane} RegionId: {this.RegionID} RegionX: {this.RegionX} RegionY: {this.RegionY}";
+        }
     }
 }

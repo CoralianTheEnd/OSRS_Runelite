@@ -1,27 +1,22 @@
 ﻿using OSRS_Runelite.API.Helper;
+using OSRS_Runelite.API.Methods.Interactives;
 using OSRS_Runelite.API.Wrappers.Ids;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OSRS_Runelite.API.Script
 {
-    internal class Mining : AbstractScript
+    internal class Fishing : AbstractScript
     {
-        public Mining()
+        public Fishing() 
         {
             this.Author = "Coralian";
-            this.Description = "Mining Script";
-            this.Name = "This is a mining script";
+            this.Description = "Fishing Script";
+            this.Name = "This is a fishing script";
         }
 
         public enum STATE
         {
             WALKING,
-            MINING,
+            FISHING,
             DROP,
             IDLE,
             UNKNOW
@@ -36,16 +31,19 @@ namespace OSRS_Runelite.API.Script
                 Logger.Info("STATE: Walking");
                 return STATE.WALKING;
 
-            } else if (this.PlayerContainer.AnimationId == Animations.MINING)
+            }
+            else if (this.PlayerContainer.AnimationId == Animations.FLY_FISHING ||
+                     this.PlayerContainer.AnimationId == Animations.CASTING_ROD)
             {
-                Logger.Info("STATE: Mining");
-                return STATE.MINING;
+                Logger.Info("STATE: Fishing");
+                return STATE.FISHING;
             }
             else if (this.InventoryContainer.IsFull())
             {
                 Logger.Info("STATE: Dropping");
                 return STATE.DROP;
-            } else if (this.PlayerContainer.AnimationId == Animations.IDLE) 
+            }
+            else if (this.PlayerContainer.AnimationId == Animations.IDLE)
             {
                 Logger.Info("STATE: Idle");
                 return STATE.IDLE;
@@ -67,50 +65,46 @@ namespace OSRS_Runelite.API.Script
                     case STATE.WALKING:
                         while (this.PlayerContainer.PoseAnimationId != PoseAnimations.IDLE)
                         {
-                            Thread.Sleep(600);
+                            Thread.Sleep(100);
                         }
+
+                        Thread.Sleep(600);
                         break;
-                    case STATE.MINING:
-                        while (PlayerContainer.AnimationId == Animations.MINING)
+                    case STATE.FISHING:
+                        while (PlayerContainer.AnimationId == Animations.FLY_FISHING || 
+                               PlayerContainer.AnimationId == Animations.CASTING_ROD)
                         {
                             Thread.Sleep(600);
                         }
                         break;
                     case STATE.DROP:
                         foreach (var item in this.InventoryContainer.FindItemsById(
-                            Items.IRON_ORE, 
-                            Items.UNCUT_SAPPHIRE, 
-                            Items.UNCUT_EMERALD, 
-                            Items.UNCUT_RUBY, 
-                            Items.UNCUT_DIAMOND))
+                            Items.RAW_SALMON,
+                            Items.RAW_TROUT))
                         {
                             item.Drop();
                         }
                         break;
                     case STATE.IDLE:
-                        var WILLOW_TREE = this.GameObjectsContainer.FindClosestGameObjectByIds(
-                            GameObjects.IRON_ROCK_0, 
-                            GameObjects.IRON_ROCK_1);
-                        if (WILLOW_TREE == null)
+                        var FishingRodSpot = Npcs.GetClosest(NpcNames.ROD_FISHING_SPOT_0);
+
+                        if (FishingRodSpot == null)
                         {
-                            Logger.Error("No iron rocks available.");
+                            Logger.Error("Fishing Spots are empty.");
                             break;
                         }
 
-                        if (!WILLOW_TREE.LeftClickMiddle())
+                        if (!FishingRodSpot.LeftClick())
                         {
                             Logger.Error("failed to click rock.");
                             break;
                         }
 
-                        Thread.Sleep(1500);
+                        Thread.Sleep(600);
                         break;
                     case STATE.UNKNOW:
                         break;
-                    default:
-                        break;
                 }
-
             }
         }
 
@@ -123,6 +117,5 @@ namespace OSRS_Runelite.API.Script
         {
             base.OnStop();
         }
-
     }
 }

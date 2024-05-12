@@ -8,6 +8,7 @@ using OSRS_Runelite.API.Helper;
 using System.Text.Json.Nodes;
 using System.Text.Json;
 using System.Text;
+using System.Web;
 
 namespace OSRS_Runelite.UI
 {
@@ -70,12 +71,30 @@ namespace OSRS_Runelite.UI
             //scriptTarget = new Woodcutting();
             //scriptTarget.Start();
 
-            scriptTarget = new Mining();
+            //scriptTarget = new Mining();
+            //scriptTarget.Start();
+
+            scriptTarget = new Fishing();
             scriptTarget.Start();
         }
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
+            List<Npc> v = API.Methods.Interactives.Npcs.GetAll();
+            foreach (Npc item in v)
+            {
+                Console.WriteLine(item.Name.ToString());
+
+                Console.WriteLine(item.Id.ToString());
+
+                Console.WriteLine(item.ClickBox.ToString());
+
+                if (item.Name.Equals("Rod Fishing spot"))
+                {
+                    item.LeftClick();
+                }
+            }
+
 
         }
 
@@ -86,16 +105,29 @@ namespace OSRS_Runelite.UI
 
         private async void toolStripLabel3_Click(object sender, EventArgs e)
         {
-            string url = "http://127.0.0.1:8080/Post";
-            var postData = new Dictionary<string, string>
+            HttpClient client = new HttpClient();
+            try
             {
-                { "Type", "Object" },
-                { "Ids", "value2" }
-            };
+                string type = "Objects";
+                int[] ids = { 11364, 11365 };
+                string requestBody = $"Type:{type} Ids:{string.Join(", ", ids)}";
 
-            string test = await SendPostDataAsync(url, postData);
+                HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:8080/Post",
+                    new StringContent(requestBody, System.Text.Encoding.UTF8, "text/plain"));
+                response.EnsureSuccessStatusCode();
 
-            Console.WriteLine(test);
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseBody);
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", ex.Message);
+            }
+            finally
+            {
+                client.Dispose();
+            }
         }
 
         HttpClient client = new HttpClient();
@@ -118,6 +150,34 @@ namespace OSRS_Runelite.UI
             else
             {
                 Console.WriteLine($"Failed to send request: {response.StatusCode}");
+                return $"Error: {response.StatusCode}";
+            }
+        }
+
+        async Task<string> SendMultipleIdsAsync(string url, List<string> ids)
+        {
+            // Join IDs with a comma
+            string idString = String.Join(",", ids);
+            // Encode the string to ensure safe transmission
+            idString = HttpUtility.UrlEncode(idString);
+
+            // Form the data to send
+            Dictionary<string, string> formData = new Dictionary<string, string>
+            {
+                { "Type", "Objects" },
+                { "Id", idString }
+            };
+
+            var content = new FormUrlEncodedContent(formData);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
+                return responseContent;
+            }
+            else
+            {
                 return $"Error: {response.StatusCode}";
             }
         }
